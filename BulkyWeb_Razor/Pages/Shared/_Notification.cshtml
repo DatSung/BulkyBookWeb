@@ -1,0 +1,36 @@
+﻿@if (TempData["Success"] != null)
+{
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript">
+		toastr.success('@TempData["Success"]');
+	</script>
+}
+
+@if (TempData["Error"] != null)
+{
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	<script type="text/javascript">
+		toastr.error('@TempData["Error"]');
+	</script>
+}
+
+
+@* <script>
+	var message = '@TempData["Success"]';
+	if (message) {
+		setTimeout(function () {
+			// Chuyển hướng sau 3 giây (có thể sửa đổi đường dẫn chuyển hướng)
+			window.location.href = '/Category/Index';
+		}, 3000);
+	}
+
+	var message = '@TempData["Error"]';
+	if (message) {
+		setTimeout(function () {
+			// Chuyển hướng sau 3 giây (có thể sửa đổi đường dẫn chuyển hướng)
+			window.location.href = '/Category/Index';
+		}, 3000);
+	}
+</script> *@
