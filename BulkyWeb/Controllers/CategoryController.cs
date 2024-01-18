@@ -1,10 +1,10 @@
-﻿using BulkyWeb.Data;
-using BulkyWeb.Models;
+﻿using BulkyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
+using Bulky.Models;
 
 namespace BulkyWeb.Controllers
 {
-    public class CategoryController : Controller
+	public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
         public CategoryController(ApplicationDbContext db)

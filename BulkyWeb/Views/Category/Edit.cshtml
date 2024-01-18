@@ -4,37 +4,46 @@
 
 @model Category
 
-<form method="post">
-	<input asp-for="CategoryId" hidden></input>
-	<div class="border p-3 mt-4">
-		<div class="row pb-2">
-			<h2 class="text-primary">Edit Category</h2>
-			<hr />
-			@* <div asp-validation-summary="All"></div> *@
-		</div>
-		<div class="mb-3 row">
-			<label asp-for="CategoryName"></label>
-			<input asp-for="CategoryName" type="text" class="form-control"></input>
-			<span asp-validation-for="CategoryName" class="text-danger"></span>
-		</div>
-		<div class="mb-3 row">
-			<label asp-for="CategoryDisplayOrder"></label>
-			<input asp-for="CategoryDisplayOrder" type="text" class="form-control"></input>
-			<span asp-validation-for="CategoryDisplayOrder" class="text-danger"></span>
-		</div>
-
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-secondary bg-gradient ml-0 py-3">
 		<div class="row">
-			<div class="col-6 col-md-3">
-				<button type="submit" class="btn btn-primary form-control">Update</button>
-
-			</div>
-			<div class="col-6 col-md-3">
-				<a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary border form-control">Back to List</a>
+			<div class="col-12 text-center">
+				<h2 class="text-white py-2">Update Category</h2>
 			</div>
 		</div>
+	</div>
+
+	<div class="card-body p-4">
+		<form method="post">
+			<input asp-for="CategoryId" hidden></input>
+			<div class="border p-3 mt-4">
+				<div class="mb-3 row">
+					<label asp-for="CategoryName"></label>
+					<input asp-for="CategoryName" type="text" class="form-control"></input>
+					<span asp-validation-for="CategoryName" class="text-danger"></span>
+				</div>
+				<div class="mb-3 row">
+					<label asp-for="CategoryDisplayOrder"></label>
+					<input asp-for="CategoryDisplayOrder" type="text" class="form-control"></input>
+					<span asp-validation-for="CategoryDisplayOrder" class="text-danger"></span>
+				</div>
+
+				<div class="row">
+					<div class="col-6 col-md-3">
+						<button type="submit" class="btn btn-primary form-control">Update</button>
+
+					</div>
+					<div class="col-6 col-md-3">
+						<a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary border form-control">Back to List</a>
+					</div>
+				</div>
+
+			</div>
+		</form>
 
 	</div>
-</form>
+</div>
+
 
 @section Scripts {
 	@{
