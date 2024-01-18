@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc;
 using Bulky.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BulkyWeb.Controllers
 {
