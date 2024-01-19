@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7/AhkDhlDzHMomLiplsfYLtIp2mIaSrgy2JmcZwdrI4mV2LSspaWDaH/yJss15rPPy0W9ZXLds1kHDntrW/nzw==",
+  "dgSpecHash": "UjVtePzTA0KKA+pmSOBEK/qiRSgPPgW9yiXuE3jVjyo0XStGHFBFBwt2xK0iZQYwFfruFYkj5iMsCYWJ4gnE0A==",
   "success": true,
-  "projectFilePath": "D:\\Outside_Sources\\ASPNET_Core_MVC\\ASP-Projects\\Bulky\\BulkyWeb\\BulkyWeb.csproj",
+  "projectFilePath": "D:\\Outside_Sources\\ASPNET_Core_MVC\\ASP-Projects\\Bulky\\BulkyWeb\\BulkyBookWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\uinic\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\uinic\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
