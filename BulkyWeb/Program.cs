@@ -1,3 +1,5 @@
+using Bulky.DataAccess.Repository;
+using Bulky.DataAccess.Repository.IRepository;
 using BulkyWeb.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,7 @@ namespace BulkyWeb
                 //Khai bao la minh cang dung Service database cua EF va truyen vao class implement service va dung sql server va truyen vao chuoi ket noi
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 
             var app = builder.Build();
