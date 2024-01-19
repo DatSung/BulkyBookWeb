@@ -20,8 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bulky.Models\BulkyBook.Models.csproj" />
-    <ProjectReference Include="..\Bulky.Utility\BulkyBook.Utility.csproj" />
+    <ProjectReference Include="..\Bulky.Models\BulkyBook.Models.csproj">
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Bulky.Utility\BulkyBook.Utility.csproj">
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

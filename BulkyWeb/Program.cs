@@ -16,7 +16,7 @@ namespace BulkyBookWeb
                 //Khai bao la minh cang dung Service database cua EF va truyen vao class implement service va dung sql server va truyen vao chuoi ket noi
             builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
             var app = builder.Build();
