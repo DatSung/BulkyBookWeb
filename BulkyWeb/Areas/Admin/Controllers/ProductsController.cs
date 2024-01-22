@@ -1,27 +1,43 @@
 ﻿using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class ProductsController : Controller
-    {
+	[Area("Admin")]
+	public class ProductsController : Controller
+	{
 
-        private readonly IUnitOfWork _unitOfWork;
-        public ProductsController(IUnitOfWork unitOfWork)
+		private readonly IUnitOfWork _unitOfWork;
+		public ProductsController(IUnitOfWork unitOfWork)
 
-        {
-            _unitOfWork = unitOfWork;
-        }
+		{
+			_unitOfWork = unitOfWork;
+		}
 
-        public IActionResult Index()
-        {
-            List<Product> objProductsList = _unitOfWork.ProductRepository.GetAll().ToList();
-            return View(objProductsList);
-        }
+		public IActionResult Index()
+		{
+			List<Product> objProductsList = _unitOfWork.ProductRepository.GetAll().ToList();
+			IEnumerable<SelectListItem> CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(u => new SelectListItem
+			{
+				Text = u.CategoryName,
+				Value = u.CategoryId.ToString(),
+			});
+			return View(objProductsList);
+		}
 		public IActionResult Create()
 		{
+			IEnumerable<SelectListItem> CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(u => new SelectListItem
+			{
+				Text = u.CategoryName,
+				Value = u.CategoryId.ToString(),
+			});
+
+			ViewBag.CategoryList = CategoryList;
+			//ViewData["CategoryList"] = CategoryList;
+
 			return View();
 		}
 

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BulkyBookBookWeb.Migrations
+namespace BulkyBook.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -74,7 +74,14 @@ namespace BulkyBookBookWeb.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -100,6 +107,8 @@ namespace BulkyBookBookWeb.Migrations
 
                     b.HasKey("ProductId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
 
                     b.HasData(
@@ -107,7 +116,9 @@ namespace BulkyBookBookWeb.Migrations
                         {
                             ProductId = 1,
                             Author = "Billy Spark",
+                            CategoryId = 1,
                             ISBN = "SWD9999001",
+                            ImageUrl = "",
                             ListPrice = 99.0,
                             Price = 90.0,
                             Price100 = 80.0,
@@ -119,7 +130,9 @@ namespace BulkyBookBookWeb.Migrations
                         {
                             ProductId = 2,
                             Author = "Nancy Hoover",
+                            CategoryId = 2,
                             ISBN = "CAW777777701",
+                            ImageUrl = "",
                             ListPrice = 40.0,
                             Price = 30.0,
                             Price100 = 20.0,
@@ -131,7 +144,9 @@ namespace BulkyBookBookWeb.Migrations
                         {
                             ProductId = 3,
                             Author = "Julian Button",
+                            CategoryId = 3,
                             ISBN = "RITO5555501",
+                            ImageUrl = "",
                             ListPrice = 55.0,
                             Price = 50.0,
                             Price100 = 35.0,
@@ -143,7 +158,9 @@ namespace BulkyBookBookWeb.Migrations
                         {
                             ProductId = 4,
                             Author = "Abby Muscles",
+                            CategoryId = 1,
                             ISBN = "WS3333333301",
+                            ImageUrl = "",
                             ListPrice = 70.0,
                             Price = 65.0,
                             Price100 = 55.0,
@@ -155,7 +172,9 @@ namespace BulkyBookBookWeb.Migrations
                         {
                             ProductId = 5,
                             Author = "Ron Parker",
+                            CategoryId = 2,
                             ISBN = "SOTJ1111111101",
+                            ImageUrl = "",
                             ListPrice = 30.0,
                             Price = 27.0,
                             Price100 = 20.0,
@@ -167,7 +186,9 @@ namespace BulkyBookBookWeb.Migrations
                         {
                             ProductId = 6,
                             Author = "Laura Phantom",
+                            CategoryId = 3,
                             ISBN = "FOT000000001",
+                            ImageUrl = "",
                             ListPrice = 25.0,
                             Price = 23.0,
                             Price100 = 20.0,
@@ -175,6 +196,17 @@ namespace BulkyBookBookWeb.Migrations
                             ProductDescription = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
                             ProductTitle = "Leaves and Wonders"
                         });
+                });
+
+            modelBuilder.Entity("BulkyBook.Models.Product", b =>
+                {
+                    b.HasOne("BulkyBook.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
