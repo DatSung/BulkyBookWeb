@@ -1,5 +1,6 @@
 ﻿using BulkyBook.DataAccess.Repository.IRepository;
 using BulkyBook.Models;
+using BulkyBook.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -27,67 +28,56 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
 			});
 			return View(objProductsList);
 		}
-		public IActionResult Create()
+
+		public IActionResult Upsert(int? productId)
 		{
-			IEnumerable<SelectListItem> CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(u => new SelectListItem
-			{
-				Text = u.CategoryName,
-				Value = u.CategoryId.ToString(),
-			});
-
-			ViewBag.CategoryList = CategoryList;
+			//ViewBag.CategoryList = CategoryList;
 			//ViewData["CategoryList"] = CategoryList;
+			ProductVM productVM = new()
+			{
+				CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(u => new SelectListItem
+				{
+					Text = u.CategoryName,
+					Value = u.CategoryId.ToString(),
+				}),
+				Product = new Product()
+			};
 
-			return View();
+			if(productId == null || productId == 0)
+			{
+				//Create
+				return View(productVM);
+			}
+			else
+			{
+				//Update
+				productVM.Product = _unitOfWork.ProductRepository.Get(u => u.ProductId == productId);
+				return View(productVM);
+			}
 		}
 
 		[HttpPost]
-		public IActionResult Create(Product product)
+		public IActionResult Upsert(ProductVM productVM, IFormFile? file)
 		{
 
 			if (ModelState.IsValid)
 			{
-				_unitOfWork.ProductRepository.Add(product);
+				_unitOfWork.ProductRepository.Add(productVM.Product);
 				_unitOfWork.Save();
 				TempData["Success"] = "Product created successfully";
 				return RedirectToAction("Index", "Products");
 			}
-			return View();
-		}
-
-
-		public IActionResult Edit(int? ProductId)
-		{
-			if (ProductId == null || ProductId == 0)
+			else
 			{
-				return NotFound();
+
+				productVM.CategoryList = _unitOfWork.CategoryRepository.GetAll().Select(u => new SelectListItem
+				{
+					Text = u.CategoryName,
+					Value = u.CategoryId.ToString(),
+				});
 			}
-
-			Product? product = _unitOfWork.ProductRepository.Get(p => p.ProductId == ProductId);
-
-			if (product == null)
-			{
-				return NotFound();
-			}
-
-			return View(product);
+			return View(productVM);
 		}
-
-		[HttpPost]
-		public IActionResult Edit(Product product)
-		{
-			if (ModelState.IsValid)
-			{
-				_unitOfWork.ProductRepository.Update(product);
-				_unitOfWork.Save();
-				TempData["Success"] = "Product updated successfully";
-				return RedirectToAction("Index");
-			}
-
-			return View();
-		}
-
-
 
 		public IActionResult Delete(int? ProductId)
 		{
