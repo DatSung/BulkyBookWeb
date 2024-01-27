@@ -24,9 +24,8 @@
 					<span asp-validation-for="Product.ProductTitle" class="text-danger"></span>
 				</div>
 				<div class="form-floating py-2 col-12">
+					<label asp-for="Product.ProductDescription" class="ms-2 text-muted"></label>
 					<textarea asp-for="Product.ProductDescription" type="text" class="form-control border-0 shadow"></textarea>
-					<label asp-for="Product.ProductDescription" class="ms-2"></label>
-					<span asp-validation-for="Product.ProductDescription" class="text-danger"></span>
 				</div>
 				<div class="form-floating py-2 col-12">
 					<input asp-for="Product.ISBN" type="text" class="form-control border-0 shadow"></input>
@@ -59,7 +58,7 @@
 					<span asp-validation-for="Product.Price100" class="text-danger"></span>
 				</div>
 				<div class="form-floating py-2 col-12">
-					<input type="file" class="form-control border-0 shadow"></input>
+					<input type="file" name="file" class="form-control border-0 shadow"></input>
 					<label asp-for="Product.ImageUrl" class="ms-2"></label>
 				</div>
 
@@ -94,6 +93,20 @@
 
 
 @section Scripts {
+	<script>
+		tinymce.init({
+			selector: 'textarea',
+			plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+			toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+			tinycomments_mode: 'embedded',
+			tinycomments_author: 'Author name',
+			mergetags_list: [
+				{ value: 'First.Name', title: 'First Name' },
+				{ value: 'Email', title: 'Email' },
+			],
+			ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+		});
+	</script>
 	@{
 		<partial name="_ValidationScriptsPartial" />
 	}
