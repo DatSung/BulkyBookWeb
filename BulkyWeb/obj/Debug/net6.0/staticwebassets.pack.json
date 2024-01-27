@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Outside_Sources\\ASPNET_Core_MVC\\ASP-Projects\\Bulky\\BulkyWeb\\wwwroot\\images\\product\\23c16c6e-4ebd-43ff-aed5-d3c865cf7be8.jpg",
+      "PackagePath": "staticwebassets\\images\\product\\23c16c6e-4ebd-43ff-aed5-d3c865cf7be8.jpg"
+    },
+    {
+      "Id": "D:\\Outside_Sources\\ASPNET_Core_MVC\\ASP-Projects\\Bulky\\BulkyWeb\\wwwroot\\js\\product.js",
+      "PackagePath": "staticwebassets\\js\\product.js"
+    },
+    {
       "Id": "D:\\Outside_Sources\\ASPNET_Core_MVC\\ASP-Projects\\Bulky\\BulkyWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
