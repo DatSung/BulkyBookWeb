@@ -30,8 +30,8 @@ namespace BulkyBook.DataAccess.Repository
 			//Lay database set de tuong uong voi object truyen vao Repository
 			this.dbSet = _db.Set<T>();
 			//_db.Categories = dbSet
-			//_db.Products.Include(u => u.Category).Include(u => u.CategoryId);
-        }
+			_db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+		}
 
         public void Add(T entity)
 		{
